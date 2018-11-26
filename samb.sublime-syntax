@@ -1,0 +1,67 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/3/syntax.html
+name: SAMB
+file_extensions:
+  - se
+scope: source.se
+contexts:
+  main:
+    - match: \{
+      push: brackets
+    - match: \}
+      scope: invalid.illegal.stray-bracket-end   
+    # Strings begin and end with quotes, and use backslashes as an escape
+    # character
+    - match: '"'
+      scope: punctuation.definition.string.begin.example-c
+      push: double_quoted_string
+
+    # Comments begin with a '//' and finish at the end of the line
+    - match: '#'
+      scope: punctuation.definition.comment.example-c
+      push: line_comment
+
+    # Keywords are if, else for and while.
+    # Note that blackslashes don't need to be escaped within single quoted
+    # strings in YAML. When using single quoted strings, only single quotes
+    # need to be escaped: this is done by using two single quotes next to each
+    # other. 
+    - match: '\b(server|require|import|include|package|author|routes|templates)\b'
+      scope: support.class.example-c
+
+    - match: '\b(bool|byte|complex(64|128)|error|float(32|64)|rune|string|u?int(8|16|32|64)?|uintptr)\b'
+      scope : storage.type.example-c
+
+    - match: '\b(global|go|server|provider|package|routes|templates|start|shutdown|recover|init|route|template)\b'
+      scope: entity.name.interface.example-c
+    
+    - match: '\b(\w+)\b(?=\()'
+      scope: support.function.example-c
+
+
+    - match: '\b(do|host|port|host|port|name|method|path|handler|provide|type|return|author)\b'
+      scope: variable.language.example-c
+    # Numbers
+    - match: '\b(-)?[0-9.]+\b'
+      scope: constant.numeric.example-c
+    - match: '\b(nil|false|true)\b'
+      scope: constant.language.example-c
+
+  brackets:
+    - match: \}
+      pop: true
+    - include: main
+
+  double_quoted_string:
+    - meta_scope: string.quoted.double.example-c
+    - match: '\\.'
+      scope: constant.character.escape.example-c
+    - match: '"'
+      scope: punctuation.definition.string.end.example-c
+      pop: true
+
+  line_comment:
+    - meta_scope: comment.line.example-c
+    - match: $
+      pop: true

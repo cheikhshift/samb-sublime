@@ -1,0 +1,13 @@
+{
+	"scope": "source.se",
+	"completions": [
+		{ "trigger": "import\tImport a go package.", "contents": "import \"$0\";"},
+		{ "trigger": "require\t Import a SAMB file.", "contents": "require \"$0\";"},
+		{ "trigger": "global\t Declare a new global variable.", "contents": "global {\n  name $1;\n  type $2;\n  return $3;\n}"},
+		{ "trigger": "provider\t Declare a new provider", "contents": "provider {\n  name $1;\n  type $2;\n  return $3;\n}"},
+		{ "trigger": "provide\t Use a provider within a request.", "contents": "provide $0;"},
+		{ "trigger": "routes\t Declare a new route group.", "contents": "routes {\n  $1\n}"},
+		{ "trigger": "route\t Declare a new HTTP route", "contents": "route {\n  method $1;\n  path $2;\n  handler $3;\n}"},
+		{ "trigger": "go\t Declare a a custom Go code block", "contents": "go {\n  do $1;\n  # do ;\n}"}
+	]
+}
