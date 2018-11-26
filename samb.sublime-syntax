@@ -33,7 +33,7 @@ contexts:
     - match: '\b(bool|byte|complex(64|128)|error|float(32|64)|rune|string|u?int(8|16|32|64)?|uintptr)\b'
       scope : storage.type.example-c
 
-    - match: '\b(global|go|server|provider|package|routes|templates|start|shutdown|recover|init|route|template)\b'
+    - match: '\b(GET|POST|PUT|DELETE|PATCH|global|go|server|provider|package|routes|templates|start|shutdown|recover|init|route|template)\b'
       scope: entity.name.interface.example-c
     
     - match: '\b(\w+)\b(?=\()'
